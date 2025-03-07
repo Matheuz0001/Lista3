@@ -13,7 +13,7 @@
         <h1>Exercicio 1</h1>
         <p>Digite os 7 valores</p>
 
-        <form method="post">
+        <form method="post" action="respostaexer1.php">
 
             <div class="mb-3">
                 <label for="valor1" class="form-label">Valor 1</label>
