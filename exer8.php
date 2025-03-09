@@ -10,11 +10,11 @@
 
 <body>
     <div class="container mt-5">
-        <h1>Exercicio 7</h1>
+        <h1>Exercicio 8</h1>
         <form method="post">
             <div class="mb-3">
                 <label for="valor" class="form-label">Digite um valor</label>
-                <input type="number" name="valor" class="form-control" required>
+                <input type="number" name="valor" class="form-control" required>    
                 <button type="submit" class="btn btn-primary mt-3">Exibir valor</button>
             </div>
         </form>
@@ -23,15 +23,15 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $numero = intval($_POST['valor']);
 
-            $soma = 0;
-            $contador = 1;
+            echo "<h2>Contagem regressiva a partir de $numero:</h2>";
+            echo "<div style='background: lightblue; padding: 10px;'>";
 
-            while ($contador <= $numero) {
-                $soma += $contador;
-                $contador++;
-            }
+            do {
+                echo "$numero ";
+                $numero--;
+            } while ($numero >= 1);
 
-            echo "<h2>A soma dos números 1 até $numero é: $soma</h2>";
+            echo "</div>";
         }
         ?>
 
