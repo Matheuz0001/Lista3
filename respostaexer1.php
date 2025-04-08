@@ -1,3 +1,17 @@
+<?php
+session_start();
+$valores = $_SESSION['valores'] ?? [];
+
+if (count($valores) !== 7) {
+  header("Location: exer1.php");
+  exit;
+}
+
+$menor = min($valores);
+$posicao = array_search($menor, $valores) + 1;
+session_destroy(); //limpar sessão 
+?>
+
 <!doctype html>
 <html lang="pt-br">
 
@@ -10,33 +24,15 @@
 
 <body>
   <div class="container mt-5">
-    <h1>Exercicio 1</h1>
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    <h1 class="mb-4">Resultado</h1>
+    <div class="alert alert-success">
+      <p><strong>Valores digitados:</strong> <?= implode(', ', $valores); ?></p>
+      <p><strong>Menor valor:</strong><?= $menor ?></p>
+      <p><strong>Posição:</strong><?= $posicao ?></p>
+    </div>
 
-      // inicia a variavel para encontrar o menor valor 
-      $menor = PHP_INT_MAX;
-      $posicao = 0;
-
-
-      //percorre os 7 valores 
-      for ($i = 1; $i <= 7; $i++) {
-        $valor = isset($_POST["valor$i"]) ? intval($_POST["valor$i"]) : PHP_INT_MAX;
-
-        if ($valor < $menor) {
-          $menor = $valor;
-          $posicao = $i;
-        }
-      }
-
-      echo "<div class='alert alert-sucess mt-3'>";
-      echo "<p><strong>Menor valor:</strong> $menor</p>";
-      echo "<p><strong>Posição:</strong> $posicao</p>";
-      echo "</div>";
-    }
-    ?>
+    <a href="exer1.php" class="btn btn-danger">Recomeçar</a>
   </div>
-
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
